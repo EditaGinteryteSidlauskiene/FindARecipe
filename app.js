@@ -20,7 +20,7 @@ const userRoutes = require('./routes/users');
 const recipeRoutes = require('./routes/recipes');
 const reviewRoutes = require('./routes/reviews');
 
-const dbUrl = process.env.DB_URL || 'mongodb://127.0.0.1:27017/find-a-recipe';
+const dbUrl = process.env.DB_URL;
 
 main().catch(err => console.log(err));
 
