@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<% layout('layouts/boilerplate') %>
+    <h1 class="text-center mb-6">Find A Recipe</h1>
+    <% for (let recipe of recipes) { %>
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card mb-3">
+                    <img class="img-fluid" src="<%=recipe.image.url %>" alt="">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <strong>
+                                <%=recipe.title %>
+                            </strong>
+                        </h5>
+                        <p class="card-text" align="justify">
+                            <%=recipe.description %>
+                        </p>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><strong>Ingredients:</strong>
+                                <%=recipe.ingredients %>
+                            </li>
+                        </ul>
+                        <a href="/recipes/<%=recipe._id %>" class="btn btn-primary">View <%=recipe.title %></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <% } %>
