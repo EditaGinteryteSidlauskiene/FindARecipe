@@ -79,9 +79,9 @@ app.use((req, res, next) => {
     //the middleware checks if the request came from the login route,
     //if it didn't then it assigns the originalUrl value to the session
     //as returnTo.
-    // if (!['/login'].includes(req.originalUrl)) {
-    //     req.session.returnTo = req.originalUrl;
-    // }
+    if (!['/login'].includes(req.originalUrl)) {
+        req.session.returnTo = req.originalUrl;
+    }
     res.locals.currentUser = req.user;
     res.locals.success = req.flash('success');
     res.locals.error = req.flash('error');
