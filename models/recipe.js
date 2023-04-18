@@ -3,15 +3,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-// const ImageSchema = new Schema({
-//     url: String,
-//     filename: String
-// })
-
-// ImageSchema.virtual('index').get(function () {
-//     return this.url.replace('/upload', '/upload/w_auto,h_200,f_auto,q_auto');
-// })
-
 // Making Schema
 const RecipeSchema = new Schema({
     title: String,
