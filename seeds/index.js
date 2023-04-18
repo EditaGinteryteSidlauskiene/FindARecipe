@@ -6,19 +6,13 @@ const recipe = require('../models/recipe');
 const Recipe = require('../models/recipe');
 const recipes = require('./recipes');
 
-if (process.env.NODE_ENV !== 'production') {
-    require('dotenv').config();
-};
-
 main().catch(err => console.log(err));
 
 async function main() {
-    await mongoose.connect('mongodb+srv://editaginteryte:lOuijT0WKVsm4LgJ@cluster0.1q5stcr.mongodb.net/test');
+    await mongoose.connect('mongodb://127.0.0.1:27017/find-a-recipe');
     // Making sure that the database is connected
     console.log('Database connected');
 }
-
-
 
 //Deleting all data and saving new recipes to the database
 const seedDB = async () => {
