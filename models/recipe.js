@@ -3,6 +3,15 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+const ImageSchema = new Schema({
+    url: String,
+    filename: String
+})
+
+ImageSchema.virtual('index').get(function () {
+    return this.url.replace('/upload', '/upload/w_200,h_200');
+})
+
 // Making Schema
 const RecipeSchema = new Schema({
     title: String,
@@ -19,10 +28,7 @@ const RecipeSchema = new Schema({
             'Drink'
         ]
     },
-    image: {
-        url: String,
-        filename: String
-    },
+    image: ImageSchema,
     description: String,
     author: {
         type: Schema.Types.ObjectId,
