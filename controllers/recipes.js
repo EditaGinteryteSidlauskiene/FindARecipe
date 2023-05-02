@@ -1,6 +1,9 @@
+//This file consists functions for recipes
+
 const Recipe = require('../models/recipe');
 const { cloudinary } = require('../cloudinary');
 
+//Variable of recipes categories
 const categories = [
     'Appetizer',
     'Salad',
@@ -9,15 +12,18 @@ const categories = [
     'Dessert',
     'Drink'];
 
+//Function for a page that consists a list of all recipes
 module.exports.index = async (req, res) => {
     const recipes = await Recipe.find({});
     res.render('recipes/index', { recipes });
 }
 
+//Function to display a form to create a new recipe
 module.exports.renderNewForm = (req, res) => {
     res.render('recipes/new', { categories });
 }
 
+//Function to create a new recipe. Taking information that the user typed and save it
 module.exports.createRecipe = async (req, res, next) => {
     const newRecipe = new Recipe(req.body.recipe);
     const { path, filename } = req.file;
