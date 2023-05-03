@@ -1,3 +1,5 @@
+//This file is created to validate forms
+
 (() => {
     'use strict'
 
