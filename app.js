@@ -1,3 +1,6 @@
+//This is the main file of the web application
+
+//env file will be uploaded only if the server is not in the production mode
 if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config();
 };
@@ -24,6 +27,7 @@ const dbUrl = process.env.DB_URL;
 
 main().catch(err => console.log(err));
 
+//Connecting to mongoose
 async function main() {
     await mongoose.connect(dbUrl);
     // Making sure that the database is connected
@@ -41,18 +45,24 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 
+//Determining the secret
 const secret = process.env.SECRET || 'thisisasecret';
 
+//Creating a new variable to store data
+//Will be using the same database location, specifying secret, 
+//preventing unnecessary saves or updates when the data does not change
 const store = MongoStore.create({
     mongoUrl: dbUrl,
     secret,
     touchAfter: 24 * 60 * 60
 });
 
+//Looking for any errors
 store.on('error', function (e) {
     console.log('SESSION STORE ERROR', e);
 })
 
+//Session configuration
 const sessionConfig = {
     store,
     name: 'session',
@@ -72,7 +82,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
 
+//Serializing user to the session
 passport.serializeUser(User.serializeUser());
+//Deserializing the user
 passport.deserializeUser(User.deserializeUser());
 
 app.use((req, res, next) => {
@@ -92,10 +104,12 @@ app.use('/', userRoutes);
 app.use('/recipes', recipeRoutes);
 app.use('/recipes/:id/reviews', reviewRoutes);
 
+//Displaying home page
 app.get('/', (req, res) => {
     res.render('home');
 })
 
+//For all types of requests, if there is an error, message and status code will be displayed
 app.all('*', (req, res, next) => {
     next(new ExpressError('Page Not Found', 404));
 })
@@ -107,6 +121,7 @@ app.use((err, req, res, next) => {
     res.status(statusCode).render('error', { err });
 })
 
+//Connecting to the port
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
     console.log(`Serving on port ${port}`);
