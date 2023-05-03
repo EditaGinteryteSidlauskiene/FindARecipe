@@ -1,3 +1,5 @@
+//This file consists of sample recipes, so there would be some data to work with
+
 module.exports = [
     {
         title: "Banana Banana Bread",
