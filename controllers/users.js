@@ -1,9 +1,15 @@
+//This file consists functions for users
+
 const User = require('../models/user');
 
+//Calling function to display register form
 module.exports.renderRegister = (req, res) => {
     res.render('users/register');
 }
 
+//Calling function to register a new user. First, making user model instance with typed email and username.
+//Then calling register function and passing just created user and the password.
+//Then the user will be logged in.
 module.exports.register = async (req, res, next) => {
     try {
         const { email, username, password } = req.body;
@@ -21,6 +27,7 @@ module.exports.register = async (req, res, next) => {
     }
 }
 
+//Calling function to display login form
 module.exports.renderLogin = (req, res) => {
     res.render('users/login');
 }
@@ -34,6 +41,7 @@ module.exports.login = (req, res) => {
     res.redirect(redirectUrl);
 }
 
+//Calling function to logout the user
 module.exports.logout = (req, res, next) => {
     req.logout(function (err) {
         if (err) {
