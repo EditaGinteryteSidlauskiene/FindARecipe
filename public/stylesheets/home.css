@@ -1,3 +1,6 @@
+//Formatting is done on the home page only
+
+//Formatting the whole body: height, adding and fomatting background image
 body {
     height: 100vh;
     background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
@@ -6,10 +9,12 @@ body {
     background-position: center;
 }
 
+//Formatting container that consists title, navbar, text and button
 .cover-container {
     max-width: 60vw;
 }
 
+//Formatting navbar links
 .nav-link {
     padding: 0.25rem 0;
     font-weight: 700;
@@ -18,16 +23,19 @@ body {
     border-bottom: 0.25rem solid transparent;
 }
 
+//Formatting navbar links when the user mouses them over
 .nav-link:hover {
     color: rgba(225, 225, 225, 0.5);
     border-bottom-color: rgba(225, 225, 225, 0.5);
 }
 
+//Formatting navbar links when they activated
 .nav-link.active {
     color: white;
     border-bottom-color: white;
 }
 
+//Formatting button, so it will not change when hover
 .btn-secondary,
 .btn-secondary:hover {
     color: #333;
