@@ -1,2 +1,4 @@
+//This file consists of files that should be ignored during deployment
+
 node_modules
 .env
