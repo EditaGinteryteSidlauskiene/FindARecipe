@@ -12,18 +12,18 @@ const categories = [
     'Dessert',
     'Drink'];
 
-//Function for a page that consists a list of all recipes
+//Calling function for a page that consists a list of all recipes
 module.exports.index = async (req, res) => {
     const recipes = await Recipe.find({});
     res.render('recipes/index', { recipes });
 }
 
-//Function to display a form to create a new recipe
+//Calling function to display a form to create a new recipe
 module.exports.renderNewForm = (req, res) => {
     res.render('recipes/new', { categories });
 }
 
-//Function to create a new recipe. Taking information that the user typed and save it
+//Calling function to create a new recipe. Taking information that the user typed and save it
 module.exports.createRecipe = async (req, res, next) => {
     const newRecipe = new Recipe(req.body.recipe);
     const { path, filename } = req.file;
@@ -34,6 +34,7 @@ module.exports.createRecipe = async (req, res, next) => {
     res.redirect(`/recipes/${newRecipe._id}`);
 }
 
+//Calling function to show a chosen recipe. First, recipe is found by Id, taking reviews and author that belong to that recipe.
 module.exports.showRecipe = async (req, res, next) => {
     const { id } = req.params;
     const recipe = await Recipe.findById(id).populate({
@@ -49,6 +50,7 @@ module.exports.showRecipe = async (req, res, next) => {
     res.render('recipes/show', { recipe });
 }
 
+//Calling function to display edit form. The recipe is found by Id, first.
 module.exports.renderEditForm = async (req, res) => {
     const { id } = req.params;
     const recipe = await Recipe.findById(id);
@@ -59,6 +61,7 @@ module.exports.renderEditForm = async (req, res) => {
     res.render('recipes/edit', { recipe, categories });
 }
 
+//Calligng function to upadate the recipe. The recipe is found by Id and updated.
 module.exports.updateRecipe = async (req, res, next) => {
     const { id } = req.params;
     const updatedRecipe = await Recipe.findByIdAndUpdate(id, { ...req.body.recipe });
@@ -73,6 +76,7 @@ module.exports.updateRecipe = async (req, res, next) => {
     res.redirect(`/recipes/${updatedRecipe._id}`);
 }
 
+//Calling function to delete the recipe
 module.exports.deleteRecipe = async (req, res, next) => {
     const { id } = req.params;
     const recipe = await Recipe.findById(id);
