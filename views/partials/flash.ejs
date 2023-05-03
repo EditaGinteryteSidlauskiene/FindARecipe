@@ -1,10 +1,14 @@
+<!--This file consists of flash bar-->
+
+<!--Green flash bar appears if success exists and if it is not empty-->
 <% if(success && success.length){ %>
     <div class="alert alert-success alert-dismissible fade show" role="alert">
         <%=success %>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     <% } %>
-
+        
+        <!--Red flash bar appears if error exists and if it is not empty-->
         <% if(error && error.length){ %>
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <%=error %>
