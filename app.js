@@ -46,7 +46,11 @@ app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 //Determining the secret
-const secret = process.env.SECRET || 'thisisasecret';
+const secret = process.env.SECRET;
+
+if (!secret) {
+    throw new Error("SECRET environment variable is required");
+}
 
 //Creating a new variable to store data
 //Will be using the same database location, specifying secret, 
